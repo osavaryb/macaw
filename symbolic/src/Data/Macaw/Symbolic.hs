@@ -934,7 +934,7 @@ data MacawBlockEnd arch = MacawBlockEnd MacawBlockEndCase !(Maybe (M.ArchSegment
 type MacawBlockEndType arch = C.StructType (Ctx.EmptyCtx Ctx.::> C.BVType 3 Ctx.::> C.MaybeType (MM.LLVMPointerType (M.ArchAddrWidth arch)))
 
 blockEndAtom :: forall arch ids s
-              . MacawSymbolicArchFunctions arch 
+              . MacawSymbolicArchFunctions arch
              -> MacawBlockEnd arch
              -> CrucGen arch ids s (CR.Atom s (MacawBlockEndType arch))
 blockEndAtom archFns (MacawBlockEnd blendK mret) = crucGenArchConstraints archFns $ do
@@ -1218,7 +1218,7 @@ macawExtensions
   -- ^ A function to make memory validity predicates (see 'MkGlobalPointerValidityAssertion' for details)
   -> C.ExtensionImpl (MacawSimulatorState sym) sym (MacawExt arch)
 macawExtensions f mvar globs lookupH toMemPred =
-  C.ExtensionImpl { C.extensionEval = evalMacawExprExtension
+  C.ExtensionImpl { C.extensionEval = \sym iTypes logFn g -> evalMacawExprExtension sym iTypes logFn g
                   , C.extensionExec = execMacawStmtExtension f mvar globs lookupH toMemPred
                   }
 
