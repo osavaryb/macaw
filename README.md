@@ -81,15 +81,6 @@ To build a single library, either specify that library name instaed of
     $ cd refinement
     $ cabal v2-build
 
-## Building with Stack
-
-To build with Stack, first create a top-level `stack.yaml` file by
-symlinking to one of the provided `stack-ghc-<version>.yaml`
-files. E.g.
-
-    $ ln -s stack-ghc-8.6.3.yaml stack.yaml
-    $ stack build
-
 # Status
 
 This codebase is a work in progress.  Support for PowerPC support
